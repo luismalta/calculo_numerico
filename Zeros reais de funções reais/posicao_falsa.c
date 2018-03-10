@@ -66,9 +66,9 @@ int main(){
     }
 
     if(funcao(x) > 0){
-      b = x;
-    } else {
       a = x;
+    } else {
+      b = x;
     }
 
     k++;
