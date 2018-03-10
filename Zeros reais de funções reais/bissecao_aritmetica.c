@@ -4,7 +4,7 @@
 
 //Define função
 double funcao(double x){
-  return (pow(x,2));
+  return (pow(x,2)+ log(x));
 }
 
 //Calcula a média aritmética de 2 números
@@ -14,7 +14,7 @@ double media_aritimetica(double a, double b){
 
 //Calcula a estimativa da quantidade maxima de iteraçoes
 int iteracoes_max(double a, double b, double e){
-  return ceil(((log10f(b - a) - log10f(e))/log10f(2.0))-1);
+  return ceil(((log10(b - a) - log10(e))/log10(2.0))-1);
 }
 
 int main(){
@@ -48,7 +48,7 @@ int main(){
 
     k++;
   }
-  
+
   raiz = media_aritimetica(a,b);
   printf("A raiz do intervalo e: %lf", raiz);
 
