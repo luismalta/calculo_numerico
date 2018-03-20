@@ -1,17 +1,24 @@
+//CIC250 - Cálculo Bumérico para Computação
+//Exercicio Pratico 02 - 14/03/18
+//2016013442 - Luís Otávio Malta Conceição
+//
+//Calculo de raizes reais de funções reais - metodo posicao falsa
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 
 //Define função
 double funcao(double x){
-  return (pow(x,2));
+  return ((3*x)-cos(x)+1); // <--Funcao a ser substituida -------
 }
 
 //Calcula a média aritmética de 2 números
 double posicao_falsa(double a, double b){
-  return (((a*funcao(b)) - (b*funcao(a)))/(funcao(a) - funcao(b)));
+  return (((a*funcao(b)) - (b*funcao(a)))/(funcao(b) - funcao(a)));
 }
-
 //Calcula a média aritmética de 2 números
 double media_aritimetica(double a, double b){
   return ((b + a)/2);
@@ -46,12 +53,12 @@ int main(){
       break;
     }
 
-    if((abs(funcao(a)) < e2) && (k == 0)){
+    if((fabs(funcao(a)) < e2) && (k == 0)){
       raiz = a;
       break;
     }
 
-    if((abs(funcao(b)) < e2) && (k == 0)){
+    if((fabs(funcao(b)) < e2) && (k == 0)){
       raiz = b;
       break;
     }
@@ -59,13 +66,13 @@ int main(){
     x = posicao_falsa(a, b);
     printf("x: %lf", x);
 
-    if(abs(funcao(x)) < e2){
+    if(fabs(funcao(x)) < e2){
       raiz = x;
             printf("Aqui");
       break;
     }
 
-    if(funcao(x) > 0){
+    if(funcao(a)*funcao(x) > 0){
       a = x;
     } else {
       b = x;
