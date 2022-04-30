@@ -1,10 +1,17 @@
+//CIC250 - Cálculo Bumérico para Computação
+//Exercicio Pratico 02 - 14/03/18
+//2016013442 - Luís Otávio Malta Conceição
+//
+//Calculo de raizes reais de funções reais - bisseção
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 
 //Define função
 double funcao(double x){
-  return (pow(x,2));
+  double N_E;
+  return ((2*x)-pow(N_E,-x)); //<---- Equacao a ser substituida---------
 }
 
 //Calcula a média aritmética de 2 números
@@ -14,7 +21,7 @@ double media_aritimetica(double a, double b){
 
 //Calcula a estimativa da quantidade maxima de iteraçoes
 int iteracoes_max(double a, double b, double e){
-  return ceil(((log10f(b - a) - log10f(e))/log10f(2.0))-1);
+  return ceil(((log10(b - a) - log10(e))/log10(2.0))-1);
 }
 
 int main(){
@@ -30,17 +37,26 @@ int main(){
   printf("Entre com a precisao: \n");
   scanf("%lf", &e);
 
-  int_max = iteracoes_max(a, b, e);
+  int_max = 50;
+  //iteracoes_max(a, b, e);
 
 //Iterações de aproximação
   while(k < int_max){
+    printf("K: %d\n", k);
     if((b - a) < e){
       break;
     }
 
     x = media_aritimetica(a, b);
 
-    if(funcao(x) > 0){
+
+    if(fabs(funcao(x)) < e){
+      printf("x: %lf\n", x);
+      printf("A raiz do intervalo e: %lf\n", x);
+      return 0;
+    }
+
+    if((funcao(a))*(funcao(x)) <= 0){
       b = x;
     } else {
       a = x;
@@ -48,8 +64,8 @@ int main(){
 
     k++;
   }
-  
+
   raiz = media_aritimetica(a,b);
-  printf("A raiz do intervalo e: %lf", raiz);
+  printf("A raiz do intervalo e: %lf\n", raiz);
 
 }
